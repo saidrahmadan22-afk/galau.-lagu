@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playlist Lagu</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0e0e0e;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  select, audio {
+    width: 90%;
+    max-width: 400px;
+    margin: 10px 0;
+  }
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Playlist Lagu</h2>
+<img id="cover" src="elaina.jpg" alt="Cover Lagu">
+<select id="playlist">
+  <option value="bersamamu (vierra).mp3">Bersamamu - Vierra</option>
+  <option value="Hujan - Utopia.mp3">Hujan - Utopia</option>
+  <option value="Karena Kamu - Geisha.mp3">Karena Kamu - Geisha</option>
+  <option value="Kesepian - Vierra.mp3">Kesepian - Vierra</option>
+  <option value="Penyangkalan - For Revenge.mp3">Penyangkalan - For Revenge</option>
+</select>
+
+<audio id="player" controls autoplay>
+  <source src="bersamamu (vierra).mp3" type="audio/mpeg">
+  Browser lo gak dukung audio.
+</audio>
+
+<script>
+const player = document.getElementById("player");
+const playlist = document.getElementById("playlist");
+
+playlist.addEventListener("change", () => {
+  player.src = playlist.value;
+  player.play();
+});
+</script>
+
+</body>
+</html>
