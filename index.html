@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Playlist Lagu</title>
+<title>Playlist Elaina</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
   body {
-    font-family: Arial, sans-serif;
-    background: #0e0e0e;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #0d0d0f 0%, #1c1b22 100%);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -15,46 +17,95 @@
     justify-content: center;
     height: 100vh;
     margin: 0;
+    text-align: center;
   }
-  select, audio {
-    width: 90%;
-    max-width: 400px;
-    margin: 10px 0;
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #d9d6ff;
+    text-shadow: 0 0 10px #a08fff;
   }
+
   img {
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 25px rgba(164, 144, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(190, 170, 255, 0.9);
+  }
+
+  select {
+    width: 90%;
+    max-width: 360px;
+    padding: 10px;
     border-radius: 10px;
-    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 15px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+  }
+
+  audio {
+    width: 90%;
+    max-width: 360px;
+    margin-top: 15px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 13px;
+    color: #aaa;
   }
 </style>
 </head>
 <body>
 
-<h2>Playlist Lagu</h2>
+<h2>🎧 Playlist Elaina 🎶</h2>
+
 <img id="cover" src="elaina.jpg" alt="Cover Lagu">
+
 <select id="playlist">
-  <option value="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/bersamamu%20(vierra).mp3">Bersamamu - Vierra</option>
-  <option value="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/Hujan%20-%20Utopia.mp3">Hujan - Utopia</option>
-  <option value="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/Karena%20Kamu%20-%20Geisha.mp3">Karena Kamu - Geisha</option>
-  <option value="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/Kesepian%20-%20Vierra.mp3">Kesepian - Vierra</option>
-  <option value="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/Penyangkalan%20-%20For%20Revenge.mp3">Penyangkalan - For Revenge</option>
+  <option value="bersamamu (vierra).mp3" data-cover="elaina.jpg">Bersamamu - Vierra</option>
+  <option value="Hujan - Utopia.mp3" data-cover="elaina.jpg">Hujan - Utopia</option>
+  <option value="Karena Kamu - Geisha.mp3" data-cover="elaina.jpg">Karena Kamu - Geisha</option>
+  <option value="Kesepian - Vierra.mp3" data-cover="elaina.jpg">Kesepian - Vierra</option>
+  <option value="Penyangkalan - For Revenge.mp3" data-cover="elaina.jpg">Penyangkalan - For Revenge</option>
 </select>
 
 <audio id="player" controls autoplay>
-  <source src="https://cdn.jsdelivr.net/gh/saidrahmadan22-afk/saidrahmadan22-afk/bersamamu%20(vierra).mp3" type="audio/mpeg">
-  Browser lo gak dukung audio.
+  <source src="bersamamu (vierra).mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung elemen audio.
 </audio>
 
-<script>
-const player = document.getElementById("player");
-const playlist = document.getElementById("playlist");
+<footer>🌸 Dibuat dengan cinta oleh Elaina & Musik</footer>
 
-playlist.addEventListener("change", () => {
-  player.src = playlist.value;
-  player.play();
-});
+<script>
+  const player = document.getElementById("player");
+  const playlist = document.getElementById("playlist");
+  const cover = document.getElementById("cover");
+
+  // Ganti lagu + gambar otomatis
+  playlist.addEventListener("change", () => {
+    const selected = playlist.options[playlist.selectedIndex];
+    player.src = selected.value;
+    cover.src = selected.dataset.cover || "elaina.jpg";
+    player.play();
+  });
 </script>
 
 </body>
